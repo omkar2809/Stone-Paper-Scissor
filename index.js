@@ -1,11 +1,8 @@
-// let rock 0
-// let paper 1
-// let scissor 2
-
 const iterations = 50;
 const no_of_players = 4;
 
 const score = {};
+const choices = ['Rock', 'Paper', 'Scissor'];
 
 const gameUtils = require('./gameUtils');
 
@@ -15,12 +12,10 @@ play = () => {
     for(k = 0; k < iterations; k++) {
         console.log(`Iteration ${k + 1}`);
 
-        let choices = [];
-        for(i = 0; i < no_of_players; i++)
-            choices.push(Math.floor(Math.random() * 3));
+        let userChoices = [...Array(no_of_players)].map(() => choices[Math.floor(Math.random() * choices.length)]);
         
-        gameUtils.displayChoices(choices);
-        gameUtils.solve(choices, score);
+        console.table(userChoices);
+        gameUtils.solve(userChoices, score);
         
         console.log('Result');
         console.table(score);
